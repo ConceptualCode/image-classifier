@@ -1,0 +1,26 @@
+version: '3'
+services:
+  chess_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api  # Explicitly specify the Dockerfile path
+    volumes:
+      - .:/app
+    environment:
+      MODEL_PATH: /app/models/chess_classifier.pth
+      CONFIG_PATH: /app/best_hyperparameters.yaml
+    ports:
+      - "8000:8000"
+
+  chess_streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit  # Explicitly specify the Dockerfile path
+    volumes:
+      - .:/app
+    environment:
+      API_URL: http://chess_api:8000/predict
+    ports:
+      - "8501:8501"
+    depends_on:
+      - chess_api

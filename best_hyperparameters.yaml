@@ -1,0 +1,4 @@
+batch_size: 16
+dropout_rate: 0.4723102934123881
+learning_rate: 0.0009378373180160115
+num_units: 144
