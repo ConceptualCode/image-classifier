@@ -3,6 +3,7 @@ import torch.optim as optim
 import torch.nn as nn
 from evaluate import evaluate_model
 from torch.optim.lr_scheduler import ReduceLROnPlateau
+import json
 
 def train_model(model, train_loader, val_loader, epochs, learning_rate, device, save_model=True):
     criterion = nn.CrossEntropyLoss()
@@ -68,12 +69,15 @@ def train_model(model, train_loader, val_loader, epochs, learning_rate, device, 
         history['val_loss'].append(val_loss)
         
         print(f"Epoch [{epoch+1}/{epochs}], Train Loss: {train_loss/len(train_loader):.4f}, Train Accuracy: {train_accuracy:.4f}% Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}%")
-        #print(f"Epoch [{epoch+1}/{epochs}], Train Accuracy: {train_accuracy:.2f}%, Val Accuracy: {val_accuracy:.2f}%")
 
     if save_model:
         print("Training complete. Best model saved as 'best_model.pth'.")
     else:
         print("Training complete. Model was not saved during hyperparameter tuning.")
+
+    with open("training_history.json", "w") as f:
+        json.dump(history, f)
+    print("Training history saved to 'training_history.json'.")
 
     print("Training complete. Best model saved as 'best_model.pth'.")
     return history
