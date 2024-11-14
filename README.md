@@ -52,8 +52,8 @@ chess-classification/
 #### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/chess-classification.git
-cd chess-classification
+git clone https://github.com/ConceptualCode/image-classifier.git
+cd chess-classifier
 ```
 
 Local Installation (Optional)
@@ -73,7 +73,7 @@ pip install -r requirements.txt
 
 To train the model, ensure data is placed in the data/ directory, then execute the following command:
 ```bash
-python train.py
+python main.py --data_dir ./Data/ --save_path ./models/chess_classifier.pth --epochs 100 --learning_rate 0.0001 --dropout_rate 0.6 --batch_size 32 --num_units 512 --resnet_version resnet50
 ```
 The trained model will be saved to models/chess_classifier.pth. Configuration for training can be modified in best_hyperparameters.yaml.
 
