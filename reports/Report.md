@@ -16,17 +16,17 @@ For this project, we chose to work with the ResNet family of convolutional neura
 - **Proven Performance**: ResNet models have consistently performed well in image classification tasks, with ResNet-50 often being the model of choice in scenarios requiring a balance between performance and computational efficiency.
 - **Transfer Learning**: The pretrained versions of ResNet on ImageNet allow us to leverage existing knowledge in early layers for general image features, reducing training time and improving accuracy with limited data.
 
-Given these advantages, ResNet models were a natural choice. We experimented with three ResNet variants (ResNet-18, ResNet-34, and ResNet-50) to compare their performance on our dataset.
+Given these advantages, ResNet models were a natural choice. I experimented with three ResNet variants (ResNet-18, ResNet-34, and ResNet-50) to compare their performance on our dataset.
 
 ---
 
 ## Techniques for Enhancement
 
-To improve model performance, we employed several enhancement techniques:
+To improve model performance, I employed several enhancement techniques:
 
 ### 1. **Data Augmentation**
 
-Data augmentation was used to artificially expand the dataset and introduce variability, helping the model generalize better. We applied the following transformations:
+Data augmentation was used to artificially expand the dataset and introduce variability, helping the model generalize better. I applied the following transformations:
 - **Random Rotation**: Rotates the image by a random angle, introducing different orientations of chess pieces.
 - **Random Horizontal Flip**: Horizontally flips images with a 50% probability.
 - **Color Jittering**: Adjusts the brightness, contrast, and saturation to help the model handle various lighting conditions.
@@ -36,7 +36,7 @@ These transformations helped reduce overfitting by exposing the model to slightl
 
 ### 2. **Hyperparameter Optimization**
 
-To fine-tune the model, we used **Optuna**, an optimization library, to automatically search for optimal hyperparameters. Specifically, we searched for:
+To fine-tune the model, we used **Optuna**, an optimization library, to automatically search for optimal hyperparameters. Specifically, I searched for:
 - **Learning Rate**: Experimented with a range to find an optimal value.
 - **Dropout Rate**: Adjusted the dropout rate in the fully connected layers to prevent overfitting.
 - **Batch Size**: Tried multiple batch sizes to find a balance between training stability and computational efficiency.
@@ -45,11 +45,11 @@ Each trial ran with a different set of hyperparameters, and Optuna automatically
 
 ### 3. **Transfer Learning**
 
-We initialized the ResNet models with pretrained weights from the ImageNet dataset. This technique, known as transfer learning, leverages the general image features learned from a large dataset (ImageNet) and applies them to our specific task. The pretrained layers act as feature extractors, which significantly boosts the performance, especially when working with limited data.
+I initialized the ResNet models with pretrained weights from the ImageNet dataset. This technique, known as transfer learning, leverages the general image features learned from a large dataset (ImageNet) and applies them to our specific task. The pretrained layers act as feature extractors, which significantly boosts the performance, especially when working with limited data.
 
 ### 4. **Learning Rate Scheduling**
 
-We used a **ReduceLROnPlateau** scheduler to adjust the learning rate dynamically during training. If the validation loss did not improve for several epochs, the learning rate was reduced by a factor of 0.5. This helps the model converge more efficiently and avoid local minima.
+I used a **ReduceLROnPlateau** scheduler to adjust the learning rate dynamically during training. If the validation loss did not improve for several epochs, the learning rate was reduced by a factor of 0.5. This helps the model converge more efficiently and avoid local minima.
 
 ---
 
