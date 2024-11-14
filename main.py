@@ -21,7 +21,7 @@ def main(data_dir, img_height, img_width, epochs, save_path, learning_rate, drop
     best_params = load_best_hyperparameters()
 
     # Extract hyperparameters
-    learning_rate = best_params.get('learning_rate', learning_rate)  # Default in case missing
+    learning_rate = best_params.get('learning_rate', learning_rate)
     dropout_rate = best_params.get('dropout_rate', dropout_rate)
     batch_size = best_params.get('batch_size', batch_size)
     num_units = best_params.get('num_units', num_units)
@@ -46,7 +46,7 @@ def main(data_dir, img_height, img_width, epochs, save_path, learning_rate, drop
     # Train
     history  = train_model(model, train_loader, val_loader, epochs, learning_rate, device)
 
-    # Optional: Print final training and validation accuracy from history
+    # Print final training and validation accuracy from history
     final_train_acc = history['accuracy'][-1]
     final_val_acc = history['val_accuracy'][-1]
     print(f"\nFinal Training Accuracy: {final_train_acc:.4f}")
